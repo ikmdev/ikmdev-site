@@ -7,7 +7,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-24.04
-
+    needs: tests
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
@@ -27,4 +27,12 @@ jobs:
 
     - name: Push nginx image
       run: docker compose -f docker-compose.yml push nginx
+
+  tests:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
       
+      - name: build docker-compose
+        run:  docker compose up
