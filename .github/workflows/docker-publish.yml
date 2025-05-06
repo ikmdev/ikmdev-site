@@ -20,13 +20,15 @@ jobs:
           pwd
           mkdir compose
           cp docker-compose.yml ./compose
-          cd compose
+        
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: confirm docker compose file exist
+        run: |
+          pwd
           ls
-          cat docker-compose.yml
 
-
-      # - name: Checkout repository
-      #   uses: actions/checkout@v3
 
       # - name: Log in to Docker Hub
       #   uses: docker/login-action@v3
