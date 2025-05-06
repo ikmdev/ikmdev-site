@@ -18,8 +18,8 @@ jobs:
       - name: copy docker-compose yaml script
         run: |
           pwd
-          mkdir compose
-          cp docker-compose.yml ./compose
+          mkdir $(pwd)/compose
+          cp docker-compose.yml ./$(pwd)/compose
         
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -27,6 +27,7 @@ jobs:
       - name: confirm docker compose file exist
         run: |
           pwd
+          cd compose
           ls
 
 
