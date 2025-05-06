@@ -15,20 +15,24 @@ jobs:
         with:
           repository: 'ikmdev/komet'
 
-      - name: Upload Artifact
+      - name: Upload Docker compose file
         uses: actions/upload-artifact@v4
         with:
           name: docker-compose
           path: docker-compose.yml
         
-      # - name: Checkout repository
-      #   uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      # - name: confirm docker compose file exist
-        # run: |
-        #   pwd
-        #   cd compose
-        #   ls
+      - name: Download docker-compose file
+        uses: actions/download-artifact@v4
+        with:
+          name: docker-compose
+
+      - name: test 
+        run: |
+          ls
+          cat docker-compose.yml
 
 
       # - name: Log in to Docker Hub
