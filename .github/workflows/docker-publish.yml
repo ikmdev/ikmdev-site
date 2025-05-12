@@ -10,10 +10,10 @@ jobs:
 
     steps:
 
-      - name: Checkout komet repository
+      - name: Checkout ike-box repository
         uses: actions/checkout@v3
         with:
-          repository: 'ikmdev/komet'
+          repository: 'ikmdev/ike-box'
 
       - name: Upload Docker compose file
         uses: actions/upload-artifact@v4
