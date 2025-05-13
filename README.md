@@ -38,7 +38,7 @@ Required for running this:
 
 ## Building and Running
 
-Follow the steps below to build and run Komet on your local machine:
+Follow the steps below to build and run static-site on your local machine:
 
 Once the Docker image is published, you can run it locally to serve the static content.
 
