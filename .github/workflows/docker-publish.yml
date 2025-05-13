@@ -10,10 +10,10 @@ jobs:
 
     steps:
 
-      - name: Checkout komet repository
+      - name: Checkout ike-box repository
         uses: actions/checkout@v3
         with:
-          repository: 'ikmdev/komet'
+          repository: 'ikmdev/ike-box'
 
       - name: Upload Docker compose file
         uses: actions/upload-artifact@v4
@@ -28,6 +28,9 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: docker-compose
+
+      - name: Modify docker-compose file image
+        run:  yq -i '.services.nginx.image = "${{ secrets.DOCKER_USERNAME }}/nginx:latest"' docker-compose.yml 
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
