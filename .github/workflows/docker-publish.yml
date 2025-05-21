@@ -10,16 +10,16 @@ jobs:
 
     steps:
 
-      - name: Checkout ike-box repository
-        uses: actions/checkout@v3
-        with:
-          repository: 'ikmdev/ike-box'
+      # - name: Checkout ike-box repository
+      #   uses: actions/checkout@v3
+      #   with:
+      #     repository: 'ikmdev/ike-box'
 
-      - name: Upload Docker compose file
-        uses: actions/upload-artifact@v4
-        with:
-          name: docker-compose
-          path: docker-compose.yml
+      # - name: Upload Docker compose file
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: docker-compose
+      #     path: docker-compose.yml
         
       - name: Checkout repository
         uses: actions/checkout@v3
