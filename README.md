@@ -1,57 +1,46 @@
 # IKMDEV-SITE
 
+This project is designed to build a Docker container using Nginx to serve static content. The container is 
+automatically built and published to Docker Hub using GitHub Actions.
 
-This project is designed to build a Docker container using Nginx to serve static content. The container is automatically built and published to Docker Hub using GitHub Actions.
+## Prerequisites
 
-## Repository Structure
-.
-├── docker
-│   ├── Dockerfile-nginx
-│   ├── nginx.conf
-│   └── index.html
-├── .github
-│   └── workflows
-│       └── docker-publish.yml
-└── README.md
+1. A Docker Hub account for downloading/using the image created. If you don't have one, you can create it 
+[here](https://hub.docker.com/signup).
+2. Docker and Docker compose installed on your local computer
 
-## Getting Started
+## Running an image from Docker Hub
 
-Required for running this:
-
-- Docker Hub account
-- GitHub repository with the above structure
-
-## Setup
-
-### Docker Hub
-
-1. Create a Docker Hub repository to store your Docker images.
-2. Obtain your Docker Hub username and password for authentication.
-
-### GitHub Secrets
-
-1. Navigate to your GitHub repository.
-2. Go to **Settings** > **Secrets and variables** > **Actions**.
-3. Add the following secrets:
-   - `DOCKER_USERNAME`: Your Docker Hub username.
-   - `DOCKER_PASSWORD`: Your Docker Hub password or access token.
-
-## Building and Running
-
-Follow the steps below to build and run static-site on your local machine:
-
-Once the Docker image is published, you can run it locally to serve the static content.
-
-3. Enter the following command to build the application:
-
-
-Unix/Linux/OSX:
+To run the Docker container from Docker Hub, execute the following (replacing the version "1.0.0" with 
+the version that you want to run):
 
 ```bash
-docker run -p 80:80 ${{ secrets.DOCKER_USERNAME }}/your-repo-name:<version>
+docker run -p 80:80 ikebox/ikmdev-site:1.0.0
 ```
-Visit http://localhost:<port> in your browser to view the content.
 
+Visit http://localhost in your browser to view the content.
+
+# Building and Running Locally
+
+To run the webbsite in a Docker container, follow these steps:
+
+- Start the Docker container with Docker Compose by running:
+
+   ```bash
+   docker compose up -d
+   ```
+
+The application should now be running in the Docker container. Access it by navigating to
+[http://localhost](http://localhost) in your web browser. If running on a remote server, replace localhost with
+the server’s IP address.
+
+Note: On the off chance that you have issues with running on the specific port on your computer, the
+docker-compose file is configurable to allow for other ports.  This can be run in the following way, substituting 8080
+for whatever port you would like to assign:
+
+   ```bash
+   NGINX_PORT=8080 docker compose up -d
+   ```
 
 ## Issues and Contributions
 Technical and non-technical issues can be reported to the [Issue Tracker](https://github.com/ikmdev/repo-seed/issues).
