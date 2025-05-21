@@ -1,36 +1,19 @@
-name: Build and Publish Nginx Image
+name: Build and Publish Static Website
 
 on:
-  push:
   workflow_dispatch:
+  push:
+   tags:
+      - '*'
 
 jobs:
   build:
     runs-on: ubuntu-24.04
 
     steps:
-
-      # - name: Checkout ike-box repository
-      #   uses: actions/checkout@v3
-      #   with:
-      #     repository: 'ikmdev/ike-box'
-
-      # - name: Upload Docker compose file
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     name: docker-compose
-      #     path: docker-compose.yml
         
       - name: Checkout repository
         uses: actions/checkout@v3
-
-      # - name: Download docker-compose file
-      #   uses: actions/download-artifact@v4
-      #   with:
-      #     name: docker-compose.yml
-
-      # - name: Modify docker-compose file image
-      #   run:  yq -i '.services.nginx.image = "${{ secrets.DOCKER_USERNAME }}/nginx:1.26.3"' docker-compose.yml 
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
@@ -44,3 +27,7 @@ jobs:
 
       - name: Push docker Image
         run: docker push ${{ secrets.DOCKER_USERNAME }}/ikmdev-site:${{ github.ref_name }}
+
+
+
+ 
